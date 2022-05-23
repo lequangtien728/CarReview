@@ -15,11 +15,23 @@ export default function SignUpPage(props) {
     passwordConf:'',
   })
 
-  async function handleSubmit(event){
-    event.preventDefault()
 
-    //Create form Data, because we are sending a multipart/formData
+
+  function handleSubmit(){
+
   }
+
+  function handleChange(event){
+    setstate({
+      ...state,
+      [event.target.name]: event.target.value
+    })
+  }
+
+  function handleFileInput(){
+
+  }
+
   return (
     <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
       <Grid.Column style={{ maxWidth: 450 }}>
@@ -31,24 +43,32 @@ export default function SignUpPage(props) {
             <Form.Input
               name="username"
               placeholder="username"
+              value={state.username}
+              onChange={handleChange}
               required
             />
             <Form.Input
               type="email"
               name="email"
               placeholder="email"
+              value={state.email}
+              onChange={handleChange}
               required
             />
             <Form.Input
               name="password"
               type="password"
               placeholder="password"
+              value={state.password}
+              onChange={handleChange}
               required
             />
             <Form.Input
               name="passwordConf"
               type="password"
               placeholder="Confirm Password"
+              value={state.passwordConf}
+              onChange={handleChange}
               required
             />
             <Form.Field>
@@ -56,6 +76,7 @@ export default function SignUpPage(props) {
                 type="file"
                 name="photo"
                 placeholder="upload image"
+                onChange={handleFileInput}
               />
             </Form.Field>
             <Button type="submit" className="btn" color="yellow">
