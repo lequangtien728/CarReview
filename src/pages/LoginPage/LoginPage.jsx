@@ -9,8 +9,8 @@ export default function LoginPage(props) {
     <>
       <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
         <Grid.Column style={{ maxWidth: 450 }}>
-          <Header as='h2' color='teal' textAlign='center'>
-            <Image src='Pictures/car logo.jpg' /> Log-in to your account
+          <Header as='h2' color='yellow' textAlign='center'>
+            <Image src='https://i.imgur.com/uFR9MGL.jpeg' /> Log-in to your account
           </Header>
           <Form size='large'>
             <Segment stacked>
