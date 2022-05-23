@@ -10,12 +10,25 @@ export default function LoginPage(props) {
     email:"",
     password:"",
   });
+  const [error, setError] = useState("");
 
-  function handleChange(e) {
+  function handleChange(event) {
     setState({
       ...state,
-      [e.target.name]: e.target.value,
+      [event.target.name]: event.target.value,
     });
+  }
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+
+    try {
+      await userService.login(state);
+      props.handleSignUpOrLogin();
+      
+    } catch (err) {
+      setError(err.message);
+    }
   }
 
   return (
@@ -25,7 +38,7 @@ export default function LoginPage(props) {
           <Header as='h2' color='yellow' textAlign='center'>
             <Image src='https://i.imgur.com/uFR9MGL.jpeg' /> Log-in to your account
           </Header>
-          <Form size='large' autoComplete="off">
+          <Form size='large' autoComplete="off" onSubmit={handleSubmit}>
             <Segment stacked>
               <Form.Input
                 type="email"
@@ -51,6 +64,7 @@ export default function LoginPage(props) {
           <Message>
             New to us? <a href='#'>Sign Up</a>
           </Message>
+          {error ? <ErrorMessage error={error} /> : null}
         </Grid.Column>
       </Grid>
     </>
