@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import { Button, Form, Grid, Header, Image, Segment } from 'semantic-ui-react'
-
+import userService from "../../utils/userService";
+import { useNavigate } from "react-router-dom";
 
 
 export default function SignUpPage(props) {
-
+  const navigate = useNavigate()
   const [error, setError] = useState('')
   //current state and setstate to change
   const[state, setstate]= useState({
@@ -17,15 +18,37 @@ export default function SignUpPage(props) {
 
   const [selectedFile, setSelectedFile] = useState('');
 
-
-
-  function handleSubmit(event){
+  async function handleSubmit(event){
     event.preventDefault()
 
     // Create form Data, because we're sending a multipart/formData request, 
     // because we are sending over multiple requests, because we're uploading a photo!
     const formData = new FormData(); // new FormData is from the browser
     formData.append('photo', selectedFile);
+
+    // wrote way of appending each key value pair to form Data
+    // formData.append('username', state.username);
+    // formData.append('email', state.email);
+    for (let fieldName in state){
+      formData.append(fieldName, state[fieldName])
+    }
+
+    // console.log(formData, " <- formData") // <- this doesn't allow you to look at the formdData object
+    // console.log(formData.forEach((item) => console.log(item))); // <- to look at the keys, you must forEach over it
+
+    try {
+
+      await userService.signup(formData) // <- we must pass the argument as formData when we have a
+      // photo
+      props.handleSignUpOrLogin(); // <- this will decode the token from local storage
+      // that we just received as a respone to our userService.signup fetch call,
+      // and decode and update the state in our App component
+      navigate('/') // after signup, navigate to the home page
+
+    } catch(err){
+      console.log(err.message);
+      setError(err.message)
+    }
 
   }
 
@@ -38,7 +61,7 @@ export default function SignUpPage(props) {
 
   function handleFileInput(event){
     console.log(event.target.files);
-    setSelectedFile(event.target.files[0]);
+    setSelectedFile(event.target.files[0]);//this allow to upload 1 file. The first file.
 
   }
 
@@ -99,3 +122,5 @@ export default function SignUpPage(props) {
     </Grid>
   );
 }
+
+
