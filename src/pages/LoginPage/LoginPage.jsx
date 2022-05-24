@@ -3,7 +3,7 @@ import "./LoginPage.css";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import userService from "../../utils/userService";
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
-
+import {useNavigate, Link} from "react-router-dom";
 
 export default function LoginPage(props) {
   const [state, setState]=useState({
@@ -11,6 +11,8 @@ export default function LoginPage(props) {
     password:"",
   });
   const [error, setError] = useState("");
+
+  const navigate = useNavigate();
 
   function handleChange(event) {
     setState({
@@ -25,6 +27,7 @@ export default function LoginPage(props) {
     try {
       await userService.login(state);
       props.handleSignUpOrLogin();
+      navigate("/");//navigate to homepage
       
     } catch (err) {
       setError(err.message);
@@ -33,7 +36,7 @@ export default function LoginPage(props) {
 
   return (
     <>
-      <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+      <Grid textAlign='center' style={{ height: '100vh', backgroundImage: "url(" + "https://wallpapercave.com/wp/wp3072155.jpg" + ")", backgroundSize: 'cover'}} verticalAlign='middle' >
         <Grid.Column style={{ maxWidth: 450 }}>
           <Header as='h2' color='yellow' textAlign='center'>
             <Image src='https://i.imgur.com/uFR9MGL.jpeg' /> Log-in to your account
@@ -62,7 +65,7 @@ export default function LoginPage(props) {
             </Segment>
           </Form>
           <Message>
-            New to us? <a href='#'>Sign Up</a>
+            New to us? <Link to="/signup">SIGN UP</Link>
           </Message>
           {error ? <ErrorMessage error={error} /> : null}
         </Grid.Column>
