@@ -12,7 +12,7 @@ import { Grid } from "semantic-ui-react";
 
 export default function FeedPage({user,handleLogout}){
   console.log(carsAPI, " <-- carsAPI")
-  const [cars, setCars] = useState([]); // <- likes are inside of the each car in the cars array
+  const [cars, setCars] = useState([]); 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
