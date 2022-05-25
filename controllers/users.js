@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const Car = require("../models/car");
 const jwt = require("jsonwebtoken");
 const SECRET = process.env.SECRET;
 const { v4: uuidv4 } = require("uuid");
@@ -9,6 +10,7 @@ const s3 = new S3(); // initialize the construcotr
 module.exports = {
   signup,
   login,
+  
 };
 
 function signup(req, res) {
@@ -56,6 +58,8 @@ async function login(req, res) {
     return res.status(401).json(err);
   }
 }
+
+
 
 /*----- Helper Functions -----*/
 
