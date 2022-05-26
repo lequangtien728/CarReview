@@ -18,9 +18,9 @@ export default function AddCommentForm(props){
   function handleSubmit(e){
     e.preventDefault()
              
-    const formData = new FormData()
-    formData.append('comment', state.comment)
-    props.handleAddPost(formData); 
+    // const formData = new FormData()
+    // formData.append('comment', state.comment)
+    // props.handleAddComment(formData); 
     
     // Have to submit the form now! We need a function!
   }
@@ -43,7 +43,8 @@ export default function AddCommentForm(props){
               />     
               <Button
                 type="submit"
-                className="btn"
+                className="ui inverted yellow button"
+                style={{color:"black"}}
               >
                 ADD COMMENT
               </Button>

@@ -1,6 +1,6 @@
 import tokenService from './tokenService';
 
-const BASE_URL = '/api';
+const BASE_URL = '/api/comments';
 
 export function create(comment) {
     return fetch(BASE_URL, {

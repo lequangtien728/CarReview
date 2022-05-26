@@ -2,8 +2,7 @@ const Car = require('../models/car');
 
 module.exports = {
     create,
-    deleteComment,
-    
+    deleteLike
 }
 
 async function create(req, res){
@@ -11,10 +10,10 @@ async function create(req, res){
     try {
 		// Find a car, so we need the id of the car
         const car = await Car.findById(req.params.id);
-		console.log(req,'cooommmmm')
-        car.comments.push({comment: req.body.comment, userId: req.user._id}); //mutating a document
+		
+        car.likes.push({username: req.user.username, userId: req.user._id}); //mutating a document
         await car.save()// save it
-        res.status(201).json({data: 'comment added'})
+        res.status(201).json({data: 'like added'})
     } catch(err){
        
         res.status(400).json({err})
@@ -22,15 +21,15 @@ async function create(req, res){
     
 }
 
-async function deleteComment(req, res){
+async function deleteLike(req, res){
     try {
         
-        const car = await Car.findOne({'comments._id': req.params.id, 'comments.username': req.user.username});
-        car.comments.remove(req.params.id) // mutating a document
+        const car = await Car.findOne({'likes._id': req.params.id, 'likes.username': req.user.username});
+        car.likes.remove(req.params.id) // mutating a document
 		console.log(car, " <-= car in delete!")
-        // req.params.id is the car id 
+        // req.params.id is the like id 
         await car.save() // after you mutate a document you must save
-        res.json({data: 'comment removed'})
+        res.json({data: 'like removed'})
     } catch(err){
         res.status(400).json({err})
     }

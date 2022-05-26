@@ -61,7 +61,7 @@ const userService = {
   logout,
   login,
   getUser,
-  getProfile,
+  getProfile
 };
 
 export default userService;

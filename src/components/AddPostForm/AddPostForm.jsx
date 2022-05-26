@@ -57,7 +57,7 @@ export default function AddPostForm(props){
               />   
               <Button
                 type="submit"
-                className="btn"
+                className="ui yellow button"
               >
                 ADD CAR
               </Button>

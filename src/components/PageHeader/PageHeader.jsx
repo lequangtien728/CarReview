@@ -5,10 +5,10 @@ import { Header, Segment, Image, Icon } from "semantic-ui-react";
 export default function PageHeader({ user, handleLogout }) {
     console.log(user, 'user in header')
   return (
-    <Segment clearing>
+    <Segment clearing style={{ height: "9vh", backgroundImage: "url(" + "https://www.teahub.io/photos/full/47-479778_black-car-background-hd.jpg" + ")",}}>
       <Header as="h2" floated="right">
         <Link to="/">
-          <Icon name="home"></Icon>
+          <Icon name="car"></Icon>
         </Link>
         <Link to="" onClick={handleLogout}>
           Logout

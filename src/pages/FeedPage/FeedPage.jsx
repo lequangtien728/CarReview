@@ -6,7 +6,7 @@ import PostGallery from "../../components/PostGallery/PostGallery";
 import Loading from "../../components/Loader/Loader";
 
 import * as carsAPI from "../../utils/carApi";
-
+import * as likesAPI from '../../utils/likeApi';
 
 import { Grid } from "semantic-ui-react";
 
@@ -47,6 +47,28 @@ export default function FeedPage({user,handleLogout}){
     }
   }
 
+  async function addLike(carId){
+    try {
+      const data = await likesAPI.create(carId)
+      console.log(data, ' <- the response from the server when we make a like');
+      getPosts(); // <- to go get the updated post with the like
+    } catch(err){
+      console.log(err)
+      setError(err.message)
+    }
+  }
+
+  async function removeLike(likeId){
+    try {
+      const data = await likesAPI.removeLike(likeId);
+      console.log(data, '<-  this is the response from the server when we remove a like')
+      getPosts()
+      
+    } catch(err){
+      console.log(err);
+      setError(err.message);
+    }
+  }
   // useEffect runs once
   // the component is first rendered (whenever you first view the component)
   // Component Lifecycle in react
@@ -75,7 +97,7 @@ export default function FeedPage({user,handleLogout}){
   } 
   console.log(cars)
   return (
-    <Grid centered>
+    <Grid centered style={{ height: "100vh", backgroundImage: "url(" + "https://www.teahub.io/photos/full/47-479778_black-car-background-hd.jpg" + ")", backgroundSize: 'cover'}}>
       <Grid.Row>
         <Grid.Column>
           <PageHeader handleLogout={handleLogout} user={user}/>
@@ -87,13 +109,15 @@ export default function FeedPage({user,handleLogout}){
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>
-        <Grid.Column style={{ maxWidth: 450 }}>
+        <Grid.Column style={{ maxWidth: 800 }}>
           <PostGallery
             cars={cars}
-            numPhotosCol={1}
+            numPhotosCol={2}
             isProfile={false}
             loading={loading}
             user={user}
+            addLike={addLike}
+            removeLike={removeLike}
           />
         </Grid.Column>
       </Grid.Row>
