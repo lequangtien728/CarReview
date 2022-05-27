@@ -11,7 +11,7 @@
 
 
 
-**Techonologies Used**: React, MongoDB, Express, Heroku, CSS, HTML, Javascript, AWS, MongoDB Cloud
+**Techonologies Used**: React, MongoDB, Express, Heroku, CSS, HTML, Javascript, AWS, MongoDB Cloud, Semantic-UI
 
 **Heroku**: https://carstagram511.herokuapp.com/<br>
 **Trello Board**: https://trello.com/b/g4bU1lg7/carpostgram<br>
