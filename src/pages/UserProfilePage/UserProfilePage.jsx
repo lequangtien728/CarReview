@@ -79,7 +79,7 @@ export default function UserProfilePage(props) {
   }
 
   return (
-    <Grid style={{ height: '100vh', backgroundImage: "url(" + "https://wallpapercave.com/wp/wp3072155.jpg" + ")", backgroundSize: 'cover'}}>
+    <Grid style={{ backgroundImage: "url(" + "https://wallpapercave.com/wp/wp3072155.jpg" + ")", backgroundSize: 'cover'}}>
       <Grid.Row>
         <Grid.Column>
           <PageHeader handleLogout={props.handleLogout} user={props.user}/>
@@ -95,7 +95,7 @@ export default function UserProfilePage(props) {
         <PostGallery
             isProfile={true}
             cars={cars}
-            numPhotosCol={4}
+            numPhotosCol={3}
             user={props.user}
             addLike={addLike}
             removeLike={removeLike}

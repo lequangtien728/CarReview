@@ -44,7 +44,7 @@ export default function AddPostForm(props){
                   className="form-control"
                   name="caption"
                   value={state.caption}
-                  placeholder="Car Descriptions?"
+                  placeholder="Car Descriptions"
                   onChange={handleChange}
                   required
               />   

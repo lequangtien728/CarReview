@@ -11,7 +11,7 @@ export default function PageHeader({ user, handleLogout }) {
           <Icon name="car"></Icon>
         </Link>
         <Link to="" onClick={handleLogout}>
-          Logout
+          LOGOUT
         </Link>
       </Header>
       <Header as="h2" floated="left">

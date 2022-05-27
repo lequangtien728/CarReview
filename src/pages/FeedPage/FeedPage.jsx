@@ -124,7 +124,7 @@ export default function FeedPage({user,handleLogout}){
   } 
   console.log(cars)
   return (
-    <Grid centered style={{ height: "100vh", backgroundImage: "url(" + "https://www.teahub.io/photos/full/47-479778_black-car-background-hd.jpg" + ")", backgroundSize: 'cover'}}>
+    <Grid centered style={{ backgroundImage: "url(" + "https://www.teahub.io/photos/full/47-479778_black-car-background-hd.jpg" + ")", backgroundSize: 'cover'}}>
       <Grid.Row>
         <Grid.Column>
           <PageHeader handleLogout={handleLogout} user={user}/>

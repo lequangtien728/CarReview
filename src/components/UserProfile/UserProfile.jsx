@@ -18,7 +18,7 @@ export default function UserProfile({ user }) {
         </Grid.Column>
         <Grid.Column textAlign="left" style={{ maxWidth: 450 }}>
           <Segment vertical >
-            <h3 style={{color: "blue"}}>{user.username}</h3>
+            <h3 style={{color: "yellow"}}>{user.username}</h3>
           </Segment>
         </Grid.Column>
       </Grid.Row>

@@ -17,6 +17,8 @@ export default function AddCommentForm(props){
 
   function handleSubmit(e){
     e.preventDefault()
+    console.log("handleSubmit")
+    console.log("state.comment")
      console.log(state.comment)        
     const formData = new FormData()
     formData.append('comment', state.comment)
@@ -38,13 +40,13 @@ export default function AddCommentForm(props){
                   className="form-control"
                   name="comment"
                   value={state.comment}
-                  placeholder="Please put a comment?"
+                  placeholder="Type your comment"
                   onChange={handleChange}
                   required
               />     
               <Button
                 type="submit"
-                className="ui inverted yellow button"
+                className="ui yellow button"
                 style={{color:"black"}}
               >
                 ADD COMMENT

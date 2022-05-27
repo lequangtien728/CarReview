@@ -30,7 +30,6 @@ export default function PostCard({ car, isProfile, addLike, removeLike, user}) {
 
 
 
-
   const [comments, setComments] = useState([]); 
   
   // C create in Crud
@@ -45,22 +44,6 @@ export default function PostCard({ car, isProfile, addLike, removeLike, user}) {
       setComments([data.data, ...comments]);
   
   }
-
-  // async function getComments() {
-  
-  //     const data = await commentsAPI.getAll();
-  //     console.log(data, " this is data,");
-  //     setComments([...data.comments]);//refer to comments Controller data
-      
-  // }
-
-  // useEffect(() => {
-  //   getComments();
-  // }, []);
-//   console.log(car)
-
-
-
 
 
   return (
@@ -101,10 +84,13 @@ export default function PostCard({ car, isProfile, addLike, removeLike, user}) {
       <Card.Content>
         <AddCommentForm car={car} handleAddComment={handleAddComment}/>
       </Card.Content>
-      Comment:{car.comments.map((comment)=>{
-        <Card.Content>{comment.comment}</Card.Content>
-      })};
-      
+      <Card.Content>
+        {/* {car.comments.map(item => (
+          <li key = {item.comment}>{item.comment}</li>
+        ))} */}
+        COMMENTS:{car.comments.map(item => (
+          <li>{item.comment}</li>))}
+      </Card.Content>  
     </Card>
   );
 }
