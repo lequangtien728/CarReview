@@ -5,7 +5,7 @@ import AddCommentForm from '../AddCommentForm/AddCommentForm';
 
 import * as commentsAPI from "../../utils/commentApi";
 
-export default function PostCard({ car, isProfile, addLike, removeLike, user, }) {
+export default function PostCard({ car, isProfile, addLike, removeLike, user}) {
 
   // call the addLike or the removeLike when we click on the heart!
   // We need to know if the logged in user has liked this particular car!
@@ -36,13 +36,13 @@ export default function PostCard({ car, isProfile, addLike, removeLike, user, })
   // C create in Crud
   // we invoke this function in addPost component when the submit button on our form is clicked
   // so we need to pass it as a prop
-  async function handleAddComment(comment) {
+  async function handleAddComment(comment,id) {
 
-      const data = await commentsAPI.create(comment); // our server is going to return
+      const data = await commentsAPI.create(comment,id); // our server is going to return
       // the created car, that will be inside of data, which is the response from
       // the server, we then want to set it in state
       console.log(data, " this is response from the server, in handleAddComment");
-      setComments([data.comment, ...comments]);
+      setComments([data.data, ...comments]);
   
   }
 
@@ -99,13 +99,12 @@ export default function PostCard({ car, isProfile, addLike, removeLike, user, })
         {car.likes.length} Likes
       </Card.Content>
       <Card.Content>
-
-        <AddCommentForm handleAddComment={handleAddComment}/>
-
+        <AddCommentForm car={car} handleAddComment={handleAddComment}/>
       </Card.Content>
+      Comment:{car.comments.map((comment)=>{
+        <Card.Content>{comment.comment}</Card.Content>
+      })};
       
     </Card>
   );
 }
-
-

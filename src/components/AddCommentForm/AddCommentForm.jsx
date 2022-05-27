@@ -17,10 +17,11 @@ export default function AddCommentForm(props){
 
   function handleSubmit(e){
     e.preventDefault()
-             
-    // const formData = new FormData()
-    // formData.append('comment', state.comment)
-    // props.handleAddComment(formData); 
+     console.log(state.comment)        
+    const formData = new FormData()
+    formData.append('comment', state.comment)
+    const commentObj = {"comment":state.comment}
+    props.handleAddComment(commentObj,props.car._id); 
     
     // Have to submit the form now! We need a function!
   }

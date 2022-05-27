@@ -7,14 +7,14 @@ module.exports = {
 }
 
 async function create(req, res){
- 
+ console.log(req.body)
     try {
 		// Find a car, so we need the id of the car
         const car = await Car.findById(req.params.id);
-		console.log(req,'cooommmmm')
+		// console.log(req,'cooommmmm')
         car.comments.push({comment: req.body.comment, userId: req.user._id}); //mutating a document
         await car.save()// save it
-        res.status(201).json({data: 'comment added'})
+        res.status(201).json({data: car.comments})
     } catch(err){
        
         res.status(400).json({err})
